@@ -62,10 +62,3 @@ void Initialized_List_Array(List * listArr, int size)
 		listArr[i].MakeEmpty();
 	}
 }
- 
-
-
-
-void Lidor() {
-	return 0;
-}
