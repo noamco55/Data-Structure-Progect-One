@@ -26,9 +26,9 @@ void Recursive_Solution()
 	FindAccessible(netWork, focus, colors, accessibleGroup);
 
 	accessibleGroup.Show_List();
-
+	
 	Free_Lists_Array(netWork, numberOfComputers + 1);
-	delete[] colors;
+	//delete[] colors;
 }
 
 void Build_Network(List* i_list, int i_connections)
@@ -39,8 +39,8 @@ void Build_Network(List* i_list, int i_connections)
 	{
 		cin >> from >> to;
 		Node* newNode = new Node;
-		newNode->m_data = to;
-		newNode->next = NULL;
+		newNode->setData(to);
+		newNode->setNext(NULL);
 		i_list[from].Insert_In_End_Of_List(newNode);
 	}
 
@@ -73,13 +73,13 @@ void FindAccessible(List * i_netWork, int i_computer, int * i_colorsArr, Static_
 {
 	i_colorsArr[i_computer] = BLACK;
 	i_accessibleGroup.Insert_In_End_Of_List(i_computer);
-	Node* curr = i_netWork[i_computer].m_head;
+	Node* curr = i_netWork[i_computer].getHead();
 
 	while (curr)
 	{
-		if (i_colorsArr[curr->m_data] == WHITE)
-			FindAccessible(i_netWork, curr->m_data, i_colorsArr, i_accessibleGroup);
-		curr = curr->next;
+		if (i_colorsArr[curr->getData()] == WHITE)
+			FindAccessible(i_netWork, curr->getData(), i_colorsArr, i_accessibleGroup);
+		curr = curr->getNext();
 	}
 
 }

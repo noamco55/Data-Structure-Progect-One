@@ -6,13 +6,22 @@ using namespace std;
 
 class Node
 {
-public:
-	int m_data;
-	Node* next;
+private:
 
+	int m_data;
+	Node* m_next;
+
+public:
 
 	Node() = default;
 	Node(int i_data);
+
+	int getData();
+	Node* getNext();
+	void setData(int i_data);
+	void setNext(Node* newNode);
+
+	
 	
 	void insertAfter(Node* i_newNode);
 	Node* DeleteAfter();
@@ -24,11 +33,15 @@ public:
 
 class List
 {
-public:
+private:
+
 	Node* m_head;
 	Node* m_tail;
 
-
+public:
+	Node* getHead();
+	Node* getTail();
+	
 	void MakeEmpty();
 	bool IsEmpty();
 	void Insert_In_Start_Of_List(Node* i_newNode);

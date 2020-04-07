@@ -1,26 +1,56 @@
 #include "singly_linked_list.h"
 
+int Node::getData()
+{
+	return m_data;
+}
+
+Node * Node::getNext()
+{
+	return m_next;
+}
+
+void Node::setData(int i_data)
+{
+	m_data = i_data;
+}
+
+void Node::setNext(Node * newNode)
+{
+	m_next = newNode;
+}
+
 Node::Node(int i_data)
 {
 	m_data = i_data;
-	next = NULL;
+	m_next = NULL;
 }
 
 void Node::insertAfter(Node * newNode)
 {
-	newNode->next = next;
-	next = newNode;
+	newNode->m_next = m_next;
+	m_next = newNode;
 }
 
 Node * Node::DeleteAfter()
 {
-	Node* toDelete = next;
+	Node* toDelete = m_next;
 	if (toDelete == NULL)
 		return NULL;
-	next = toDelete->next;
+	m_next = toDelete->m_next;
 	return toDelete;
 }
 
+
+Node * List::getHead()
+{
+	return m_head;
+}
+
+Node * List::getTail()
+{
+	return m_tail;
+}
 
 void List::MakeEmpty()
 {
@@ -40,7 +70,7 @@ bool List::IsEmpty()
 
 void List::Insert_In_Start_Of_List(Node * i_newNode)
 {
-	i_newNode->next = m_head;
+	i_newNode->setNext(m_head);
 	m_head = i_newNode;
 	if (m_tail == NULL)
 		m_tail = m_head;
@@ -49,10 +79,13 @@ void List::Insert_In_Start_Of_List(Node * i_newNode)
 void List::Insert_In_End_Of_List(Node * i_newNode)
 {
 	if (m_tail == NULL && m_head == NULL)
-		m_tail = m_head = i_newNode;
+	{
+		m_tail = i_newNode;
+		m_head = i_newNode;
+	}
 	else
 	{
-		m_tail->next = i_newNode;
+		m_tail->setNext(i_newNode);
 		m_tail = i_newNode;
 	}
 	
@@ -61,7 +94,7 @@ void List::Insert_In_End_Of_List(Node * i_newNode)
 void List::Delete_In_Start_Of_List()
 {
 	Node* toDelete = m_head;
-	m_head = m_head->next;
+	m_head = m_head->getNext();
 	if (m_head == NULL)
 		m_tail = NULL;
 
@@ -78,7 +111,7 @@ void List::Delete_In_End_Of_List()
 	while (curr != m_tail)
 	{
 		prev = curr;
-		curr = curr->next;
+		curr = curr->getNext();
 	}
 	toDelete = m_tail;
 	m_tail = prev;
@@ -93,8 +126,8 @@ void List::Show_List()
 	Node* curr = m_head;
 	while (curr != NULL)
 	{
-		cout << "->" << curr->m_data;
-		curr = curr->next;
+		cout << "->" << curr->getNext();
+		curr = curr->getNext();
 	}
 	cout << endl;
 }
@@ -105,7 +138,7 @@ void List::Delete_List()
 	while (m_head)
 	{
 		toDelete = m_head;
-		m_head = m_head->next;
+		m_head = m_head->getNext();
 		delete toDelete;
 	}
 	m_head = m_tail = NULL;
