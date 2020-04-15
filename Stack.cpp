@@ -146,7 +146,7 @@ void Stack::StackList::Delete_In_End_Of_List()
 
 }
 
-void Stack::StackList::Remove_From_Head()  // removes head from list but doesn't delete (free) it
+void Stack::StackList::Remove_From_Head()  // removes head from list and delete (free) it
 {
 	ItemType* toDelete = m_head;
 	m_head = m_head->getNext();

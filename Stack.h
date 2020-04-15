@@ -12,6 +12,8 @@ public:
 	ItemType(Node* i_local_Curr, int i_computer,  LINE line);
 	ItemType(ItemType* i_item);
 	~ItemType();
+
+
 	ItemType* getNext();
 	void setNext(ItemType* i_item);
 	LINE getLine() const;
@@ -24,13 +26,11 @@ public:
  private:
 	
 	LINE m_line;                //   parameters
-	                            //         of
+								//         of
 	int m_computer;             //          ITERATIVE
-	                            //           FindAccessible() function
+	Node* m_local_Curr;         //           FindAccessible() function
  
 	
-	Node* m_local_Curr;  // iterative local parameter
-
 	ItemType* m_next;
 
  

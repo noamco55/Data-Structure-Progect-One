@@ -26,9 +26,9 @@ class Static_list
 private:
 
 	Stataic_node* m_stataic_list;
-	int m_headList;
-	int m_tailList;
-	int m_headFree;
+	int m_headList;     //the head of the value list
+	int m_tailList;		//the tail of the value list
+	int m_headFree;		//the head of the free list
 	int m_size;
 
 public:

@@ -37,9 +37,10 @@ int Static_list::getSize()
 	return m_size;
 }
 
+// in the value list we don't have elements, and in the free list we can insert in any place
 void Static_list::MakeEmpty()
 {
-	m_headList = -1;
+	m_headList = -1;						
 	m_tailList = -1;
 	m_headFree = 0;
 	int i;
