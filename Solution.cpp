@@ -32,8 +32,11 @@ void findAccessibleIter(List* i_netWork, int i_computer, int* i_colorsArr, Stati
 	do
 	{
 		if (returnFromRecursion)
+		{
+			delete curr;
 			curr = stack.Pop();
-
+		}
+		
 		if (curr->getLine() == ItemType::START)
 		{
 			i_colorsArr[curr->getComputer()] = BLACK;
