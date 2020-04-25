@@ -48,7 +48,7 @@ int main()
 
 		Free_Lists_Array(netWork, numberOfComputers + 1);
 
-		//delete[] colors;
+		delete[] colors;
 	}
 	catch (int i_computer)   // catch the exception and print message to user
 	{
