@@ -23,7 +23,7 @@ void Node::setNext(Node * newNode)
 Node::Node(int i_data)
 {
 	m_data = i_data;
-	m_next = NULL;
+	m_next = nullptr;
 }
 
 Node::Node(Node * newNode)
@@ -41,8 +41,8 @@ void Node::insertAfter(Node * newNode)
 Node * Node::DeleteAfter()
 {
 	Node* toDelete = m_next;
-	if (toDelete == NULL)
-		return NULL;
+	if (toDelete == nullptr)
+		return nullptr;
 	m_next = toDelete->m_next;
 	return toDelete;
 }
@@ -60,14 +60,14 @@ Node * List::getTail()
 
 void List::MakeEmpty()
 {
-	m_head = m_tail = NULL;
+	m_head = m_tail = nullptr;
 }
 
 bool List::IsEmpty()
 {
-	if (m_head == NULL)
+	if (m_head == nullptr)
 	{
-		m_tail = NULL;
+		m_tail = nullptr;
 		return true;
 	}
 	return false;
@@ -78,13 +78,13 @@ void List::Insert_In_Start_Of_List(Node * i_newNode)
 {
 	i_newNode->setNext(m_head);
 	m_head = i_newNode;
-	if (m_tail == NULL)
+	if (m_tail == nullptr)
 		m_tail = m_head;
 }
 
 void List::Insert_In_End_Of_List(Node * i_newNode)
 {
-	if (m_tail == NULL && m_head == NULL)
+	if (m_tail == nullptr && m_head == nullptr)
 	{
 		m_tail = i_newNode;
 		m_head = i_newNode;
@@ -101,8 +101,8 @@ void List::Delete_In_Start_Of_List()
 {
 	Node* toDelete = m_head;
 	m_head = m_head->getNext();
-	if (m_head == NULL)
-		m_tail = NULL;
+	if (m_head == nullptr)
+		m_tail = nullptr;
 
 	delete toDelete;
 
@@ -113,7 +113,7 @@ void List::Delete_In_End_Of_List()
 	Node* toDelete, *curr , *prev;
 
 	curr = m_head;
-	prev = NULL;
+	prev = nullptr;
 	while (curr != m_tail)
 	{
 		prev = curr;
@@ -123,14 +123,14 @@ void List::Delete_In_End_Of_List()
 	m_tail = prev;
 	delete toDelete;
 
-	if (m_tail == NULL)
-		m_head = NULL;
+	if (m_tail == nullptr)
+		m_head = nullptr;
 }
 
 void List::Show_List()
 {
 	Node* curr = m_head;
-	while (curr != NULL)
+	while (curr != nullptr)
 	{
 		cout << "->" << curr->getNext();
 		curr = curr->getNext();
@@ -147,7 +147,7 @@ void List::Delete_List()
 		m_head = m_head->getNext();
 		delete toDelete;
 	}
-	m_head = m_tail = NULL;
+	m_head = m_tail = nullptr;
 	
 }
 

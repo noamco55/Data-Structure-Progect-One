@@ -27,6 +27,7 @@ int main()
 
 	try
 	{
+		
 		checkFocusComputerFromUser(focus, numberOfComputers);   // could throw exception
 
 		Static_list accessibleGroup1(numberOfComputers);		//accessibleGroup1 - accessible Group for recursive solution 
@@ -49,9 +50,9 @@ int main()
 
 		//delete[] colors;
 	}
-	catch (const char* msg)   // catch the exception and print message to user
+	catch (int i_computer)   // catch the exception and print message to user
 	{
-		cout << msg << focus << endl;
+		cout << "no such computer " << focus << endl;
 	}
 
 	system("pause");

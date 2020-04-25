@@ -11,6 +11,8 @@ ItemType::ItemType(ItemType * i_item)
 {
 	m_line = i_item->getLine();
 	m_computer = i_item->getComputer();
+	if (m_local_Curr)			
+		delete m_local_Curr;
 	m_local_Curr = new Node(i_item->getlocalCurr());
 }
 

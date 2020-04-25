@@ -33,10 +33,10 @@ void findAccessibleIter(List* i_netWork, int i_computer, int* i_colorsArr, Stati
 	{
 		if (returnFromRecursion)
 		{
-			delete curr;
+			delete curr;			//free memory before lose it
 			curr = stack.Pop();
 		}
-		
+
 		if (curr->getLine() == ItemType::START)
 		{
 			i_colorsArr[curr->getComputer()] = BLACK;
@@ -74,8 +74,9 @@ void findAccessibleIter(List* i_netWork, int i_computer, int* i_colorsArr, Stati
 void Build_Network(List* i_list, int i_connections , int  i_numberOfComputers)
 {
 	int from , to;
+	bool validInput = true;
 
-	for (int i = 0; i < i_connections; i++)  // loop for the number of connections we have in the network
+	for (int i = 0; i < i_connections && validInput; i++)  // loop for the number of connections we have in the network
 	{
 		cin >> from >> to;
 		try
@@ -83,20 +84,13 @@ void Build_Network(List* i_list, int i_connections , int  i_numberOfComputers)
 			checkConnectionsFromUser(from, to , i_numberOfComputers);  // could throw exception
 			Node* newNode = new Node;
 			newNode->setData(to);
-			newNode->setNext(NULL);
+			newNode->setNext(nullptr);
 			i_list[from].Insert_In_End_Of_List(newNode);
 		}
-		catch(const char* msg)   // catch the exception and check the value that was exception
+		catch(int i_computer)   // catch the exception and check the value that was exception
 		{
-			cout << msg ;
-
-			if (from == 0)
-				cout << from;
-			else if (to == 0)
-				cout << to;
-			else
-				cout << (from >= to) ? from : to;
-			cout << endl;
+			cout << "no such computer " << i_computer << endl;
+			exit(-1);			// make sure not to continue the program after exception 
 		}
 	}
 }
@@ -138,19 +132,23 @@ void Free_Lists_Array(List * i_listArr, int i_size)
 }
 
 // check if inputs for "i_from" and "i_to" are valid
-void checkConnectionsFromUser(int i_from, int i_to, int  i_numberOfComputers) throw(const char*)
+void checkConnectionsFromUser(int i_from, int i_to, int  i_numberOfComputers) throw(int)
 {
-	if (i_from > i_numberOfComputers || i_from == 0 || i_to > i_numberOfComputers || i_to == 0)
+	if (i_from > i_numberOfComputers || i_from == 0)
 	{
-		throw "no such computer " ;
+		throw  i_from;
+	}
+	if(i_to > i_numberOfComputers || i_to == 0)
+	{
+		throw i_to;
 	}
 }
 
 // check if input for "i_computer" is valid
-void checkFocusComputerFromUser(int  i_computer, int  i_numberOfComputers)
+void checkFocusComputerFromUser(int  i_computer, int  i_numberOfComputers) throw(int)
 {
 	if (i_computer > i_numberOfComputers || i_computer == 0)
 	{
-		throw "no such computer " ;
+		throw i_computer;
 	}
 }
